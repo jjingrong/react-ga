@@ -42,15 +42,14 @@ var ReactGA = {
 
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/
     // jscs:disable
-    $.get("https://www.google-analytics.com/analytics_debug.js", eval)
-    .done(function(){})
-    // jscs:enable
-
-    if (options && options.gaOptions) {
-      ga('create', gaTrackingID, options.gaOptions);
-    } else {
-      ga('create', gaTrackingID, 'auto');
-    }
+    $.get( (_debug ? "https://www.google-analytics.com/analytics_debug.js" : "https://www.google-analytics.com/analytics.js")  , eval)
+    .done(function(){
+      if (options && options.gaOptions) {
+        ga('create', gaTrackingID, options.gaOptions);
+      } else {
+        ga('create', gaTrackingID, 'auto');
+      }
+    })
   },
 
   /**
