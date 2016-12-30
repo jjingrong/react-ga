@@ -24,7 +24,7 @@ var _format = function (s) {
 };
 
 var ReactGA = {
-  initialize: function (gaTrackingID, options) {
+  initialize: function (gaTrackingID, options, callback) {
     if (!gaTrackingID) {
       warn('gaTrackingID is required in initialize()');
       return;
@@ -49,6 +49,7 @@ var ReactGA = {
       } else {
         ga('create', gaTrackingID, 'auto');
       }
+      callback()
     })
   },
 
