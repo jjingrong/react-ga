@@ -51,6 +51,9 @@ var ReactGA = {
       }
       callback()
     })
+    .always(function() {
+      callback()
+    })
   },
 
   /**
