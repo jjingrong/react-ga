@@ -23,6 +23,21 @@ var _format = function (s) {
   return format(s, _titleCase);
 };
 
+// Init GA
+(function (i, s, o, g, r, a, m) {
+  if (!i) i ={}
+  if (!i[r]) i[r] = {}
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments);
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m);
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
 var ReactGA = {
   initialize: function (gaTrackingID, options, callback) {
     if (!gaTrackingID) {
@@ -61,7 +76,7 @@ var ReactGA = {
    * Returns the original GA object.
    */
   ga: function () {
-    if (arguments.length > 0) {
+    if (arguments.length > 0 && ga && typeof( ga.apply )=='function'  ) {
       ga.apply(this, arguments);
       if (_debug) {
         log('called ga(\'arguments\');');
